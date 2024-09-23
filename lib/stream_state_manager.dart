@@ -27,7 +27,7 @@ abstract class Component<T> {
   }
 
   T get state => _state;
-  set emit(T newState) => _addToSink(newState);
+  void emit(T newState) => _addToSink(newState);
 
   Stream<T> get stream => _streamController.stream;
 
