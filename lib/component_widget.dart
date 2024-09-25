@@ -14,7 +14,9 @@ class ComponentWidget<T extends Component, ComponentState>
       required this.state,
       required this.builder,
       this.onClose,
-      this.onError});
+      this.onError,
+      this.onListen,
+       });
 
   @override
   Widget build(BuildContext context) {
