@@ -34,7 +34,7 @@ class ComponentWidget<T extends Component, ComponentState>
             case ConnectionState.waiting:
             case ConnectionState.active:
                  WidgetsBinding.instance.addPostFrameCallback((_) =>
-                onListen?.call();
+                onListen?.call()
               );
               return builder.call(snapshot.data as ComponentState);
             case ConnectionState.done:
