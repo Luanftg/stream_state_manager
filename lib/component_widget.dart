@@ -5,6 +5,7 @@ class ComponentWidget<T extends Component, ComponentState>
     extends StatelessWidget {
   final T state;
   final Widget Function(ComponentState) builder;
+  final void Function(ComponentState)? onListen;
   final Widget Function(ComponentState)? onClose;
   final Widget Function(ComponentState)? onError;
 
@@ -30,6 +31,9 @@ class ComponentWidget<T extends Component, ComponentState>
             case ConnectionState.none:
             case ConnectionState.waiting:
             case ConnectionState.active:
+                 WidgetsBinding.instance.addPostFrameCallback((_) =>
+                onListen?.call();
+              );
               return builder.call(snapshot.data as ComponentState);
             case ConnectionState.done:
               return onClose?.call(snapshot.data as ComponentState) ??
